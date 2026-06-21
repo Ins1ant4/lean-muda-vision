@@ -2,7 +2,7 @@
 > **Real-Time Edge AI & Lean Manufacturing Analytics for FORVIA (STEA)**
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![YOLOv8](https://img.shields.io/badge/YOLO-v8-brightgreen.svg)](https://github.com/ultralytics/ultralytics)
+[![YOLO26](https://img.shields.io/badge/YOLO-26-brightgreen.svg)](https://github.com/ultralytics/ultralytics)
 [![GUI](https://img.shields.io/badge/UI-CustomTkinter-orange.svg)](https://github.com/TomSchimansky/CustomTkinter)
 [![Database](https://img.shields.io/badge/Database-SQLite%20%2F%20Supabase-blueviolet.svg)](https://supabase.com)
 
@@ -26,7 +26,7 @@ graph TD
     end
     
     subgraph "Serveur local / Edge Device (Linux / Windows)"
-        D[Vision Loop - YOLOv8 + PyTorch] -- "Traitement Vidéo Headless" --> E[Moteur d'Intelligence Artificielle]
+        D[Vision Loop - YOLO26 + PyTorch] -- "Traitement Vidéo Headless" --> E[Moteur d'Intelligence Artificielle]
         F[Caméra IP / USB] -- "Flux Vidéo" --> E
         E -- "Enregistrement des Événements" --> C
     end
@@ -35,7 +35,7 @@ graph TD
     style D fill:#cce5ff,stroke:#007bff,stroke-width:2px
 ```
 
-1. **The Vision Loop (Edge AI - `vision_loop.py`)**: A headless, high-performance module executing YOLOv8 object detection on camera streams. It detects hands, tools, sewing jigs, and operator status to feed the Muda state machine.
+1. **The Vision Loop (Edge AI - `vision_loop.py`)**: A headless, high-performance module executing YOLO26 object detection on camera streams. It detects hands, tools, sewing jigs, and operator status to feed the Muda state machine.
 2. **The Dashboard (Operator GUI - `Dashboard/main.py`)**: An interactive GUI built with **CustomTkinter** that retrieves event logs, tracks daily shift statistics, displays real-time OEE, and allows supervisor configuration.
 
 ---

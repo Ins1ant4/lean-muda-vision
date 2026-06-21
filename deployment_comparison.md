@@ -7,7 +7,7 @@ Ce document présente une analyse comparative détaillée entre **PyInstaller** 
 ## 1. Contexte du Projet & Architecture
 
 Le système **SMART Productivity Monitor** présente une architecture découplée en deux sous-systèmes distincts :
-1. **Le Vision Loop (Cerveau IA - `vision_loop.py`)** : Traitement lourd en temps réel (YOLOv8, PyTorch, OpenCV, CUDA pour l'accélération GPU).
+1. **Le Vision Loop (Cerveau IA - `vision_loop.py`)** : Traitement lourd en temps réel (YOLO26, PyTorch, OpenCV, CUDA pour l'accélération GPU).
 2. **Le Dashboard (Interface UI - `Dashboard/main.py`)** : Interface graphique interactive développée avec **CustomTkinter** pour les opérateurs et superviseurs.
 
 Cette structure asymétrique impose des contraintes de déploiement très différentes pour chaque partie.
@@ -77,7 +77,7 @@ graph TD
     end
     
     subgraph "Serveur local / Edge Device (Linux / Windows)"
-        D[Vision Loop - YOLOv8 + PyTorch] -- "Conteneurisé sous Docker" --> E[Moteur d'Intelligence Artificielle]
+        D[Vision Loop - YOLO26 + PyTorch] -- "Conteneurisé sous Docker" --> E[Moteur d'Intelligence Artificielle]
         F[Caméra IP / PoE] -- "Flux RTSP (Réseau)" --> E
         E -- "Publish Data (MQTT)" --> G[Broker MQTT Mosquitto]
         G -- "Subscribe" --> C
@@ -96,7 +96,7 @@ graph TD
 2. **Le Vision Loop est Conteneurisé (via Docker) ou exécuté en Environnement Dédié (Venv) :**
    Le traitement vidéo lourd tourne en arrière-plan (Headless). 
    * **Sur un PC Windows avec Caméra USB (Phase Actuelle) :** L'utilisation de votre script de lancement industriel [run_vision_only.bat](file:///c:/Users/pc/OneDrive/Bureau/VISION_AB/run_vision_only.bat) associé à un environnement virtuel Python (`venv`) local est la solution la plus simple et efficace pour contourner les blocages USB de Docker sur Windows.
-   * **Sur des Caméras IP / Réseau (Phase Industrielle) :** Le passage à **Docker** devient le choix logique. Le flux vidéo passe par le réseau (RTSP). Le conteneur Docker contenant YOLOv8 tourne en arrière-plan sur un serveur de l'usine ou sur un Edge Device (Nvidia Jetson) avec accès GPU direct, éliminant tout conflit de pilotes.
+   * **Sur des Caméras IP / Réseau (Phase Industrielle) :** Le passage à **Docker** devient le choix logique. Le flux vidéo passe par le réseau (RTSP). Le conteneur Docker contenant YOLO26 tourne en arrière-plan sur un serveur de l'usine ou sur un Edge Device (Nvidia Jetson) avec accès GPU direct, éliminant tout conflit de pilotes.
 
 ---
 
@@ -108,6 +108,6 @@ Dans votre mémoire (partie Industrialisation) et vos diapositives de soutenance
 > *"Pour la phase pilote sur le site STEA de Ben Arous, nous avons privilégié une approche native basée sur **PyInstaller** pour le Dashboard opérateur et un lanceur industriel résilient (`.bat` avec auto-restart) pour le Vision Loop. Ce choix garantit un déploiement instantané sur les PC Windows existants en atelier, sans heurter les restrictions de sécurité de l'IT industrielle concernant l'installation de Docker et en assurant un accès direct aux caméras USB sans latence."*
 
 ### 2. Argument de la Perspective Industrielle (Scale-up Multi-sites) :
-> *"Dans une perspective de déploiement à grande échelle (Smart Factory / Industrie 4.0), la transition vers **Docker** est planifiée pour le sous-système de vision. En migrant le flux vidéo d'USB vers des caméras IP (PoE), le Vision Loop pourra être conteneurisé sous Docker. Cela permettra d'encapsuler les dépendances complexes de YOLOv8/PyTorch, de s'affranchir des contraintes d'OS, et de centraliser la gestion du parc d'IA via des orchestrateurs comme **Kubernetes** sur l'infrastructure Cloud ou Edge du groupe FORVIA."*
+> *"Dans une perspective de déploiement à grande échelle (Smart Factory / Industrie 4.0), la transition vers **Docker** est planifiée pour le sous-système de vision. En migrant le flux vidéo d'USB vers des caméras IP (PoE), le Vision Loop pourra être conteneurisé sous Docker. Cela permettra d'encapsuler les dépendances complexes de YOLO26/PyTorch, de s'affranchir des contraintes d'OS, et de centraliser la gestion du parc d'IA via des orchestrateurs comme **Kubernetes** sur l'infrastructure Cloud ou Edge du groupe FORVIA."*
 
 Cet argumentaire montrera à votre jury (notamment votre encadrant académique et professionnel) que vous maîtrisez non seulement la théorie des modèles IA, mais aussi les **réalités opérationnelles, matérielles et informatiques (IT/OT)** du monde industriel.
