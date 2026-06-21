@@ -24,22 +24,8 @@ The system uses a decoupled, hybrid architecture to balance heavy neural network
 ### Edge Computing Deployment Diagram
 ![Edge Computing Architecture](docs/images/Architecture%20Edge%20Computing.png)
 
-```mermaid
-graph TD
-    subgraph "Poste Opérateur / IPC (Windows)"
-        A[Dashboard GUI - CustomTkinter] -- "Exécuté via PyInstaller (.exe)" --> B[Interface Utilisateur]
-        B -- "Temps Réel / Historique" --> C[(Supabase / SQLite locale)]
-    end
-    
-    subgraph "Serveur local / Edge Device (Linux / Windows)"
-        D[Vision Loop - YOLO26 + PyTorch] -- "Traitement Vidéo Headless" --> E[Moteur d'Intelligence Artificielle]
-        F[Caméra IP / USB] -- "Flux Vidéo" --> E
-        E -- "Enregistrement des Événements" --> C
-    end
-
-    style A fill:#d4edda,stroke:#28a745,stroke-width:2px
-    style D fill:#cce5ff,stroke:#007bff,stroke-width:2px
-```
+### System Sequence Diagram
+![Sequence Diagram](docs/images/sequence_diagram.png)
 
 1. **The Vision Loop (Edge AI - `vision_loop.py`)**: A headless, high-performance module executing YOLO26 object detection on camera streams. It detects hands, tools, sewing jigs, and operator status to feed the Muda state machine.
 2. **The Dashboard (Operator GUI - `Dashboard/main.py`)**: An interactive GUI built with **CustomTkinter** that retrieves event logs, tracks daily shift statistics, displays real-time OEE, and allows supervisor configuration.
