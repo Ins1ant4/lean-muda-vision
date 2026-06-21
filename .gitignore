@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local environment configuration
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Database files (SQLite)
+*.db
+*.sqlite3
+
+# Large video/media files (GitHub has a 100MB size limit)
+*.mp4
+*.avi
+*.mkv
+
+# Deep Learning model weights & compiled engines
+*.pt
+*.pth
+*.onnx
+*.engine
+best2_openvino_model/
+
+# PyInstaller build files
+build/
+dist/
+*.spec
+
+# Logs
+logs/
+*.log
+crash_log.txt
