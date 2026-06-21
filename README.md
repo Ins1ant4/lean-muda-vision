@@ -6,6 +6,8 @@
 [![GUI](https://img.shields.io/badge/UI-CustomTkinter-orange.svg)](https://github.com/TomSchimansky/CustomTkinter)
 [![Database](https://img.shields.io/badge/Database-SQLite%20%2F%20Supabase-blueviolet.svg)](https://supabase.com)
 
+🎥 **[Watch the Live System Demonstration on LinkedIn](https://www.linkedin.com/posts/abdessalem-anis-23b497377_artificialintelligence-computervision-forvia-ugcPost-7474089099726053376-F1fr/)**
+
 ---
 
 ## 📌 Project Overview
